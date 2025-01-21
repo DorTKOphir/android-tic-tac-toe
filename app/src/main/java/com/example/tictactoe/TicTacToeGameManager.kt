@@ -3,6 +3,7 @@ package com.example.tictactoe
 class TicTacToeGameManager(boardSize: Int = 3) {
     private val board = Array(boardSize) { CharArray(boardSize) { ' ' } }
     private var currentPlayer = 'X'
+    val currentPlayerSymbol get() = currentPlayer
 
     fun makeMove(row: Int, col: Int): Boolean {
         if (board[row][col] == ' ') {
@@ -78,4 +79,11 @@ class TicTacToeGameManager(boardSize: Int = 3) {
 
 
     fun isDraw(): Boolean = board.all { row -> row.all { it != ' ' } }
+
+    fun reset() {
+        for (row in board) {
+            row.fill(' ')
+        }
+        currentPlayer = 'X'
+    }
 }
