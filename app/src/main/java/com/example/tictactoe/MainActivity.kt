@@ -43,16 +43,15 @@ class MainActivity : AppCompatActivity() {
         val currentPlayer = game.currentPlayerSymbol.toString()
         if (game.makeMove(row, col)) {
             buttons[row][col].text = currentPlayer
+            val winner = game.checkWinner()
             when {
-                game.isDraw() -> {
-                    showResultDialog("It's a draw!")
-                }
+                winner != null -> {
+                    showResultDialog("$winner Won!")
 
+                }
                 else -> {
-                    val winner = game.checkWinner()
-                    if (winner != null) {
-                        showResultDialog("$winner Won!")
-                    }
+                    if (game.isDraw())
+                    showResultDialog("It's a draw!")
                 }
             }
         }
